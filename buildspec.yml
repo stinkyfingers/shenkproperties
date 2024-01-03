@@ -11,7 +11,7 @@ phases:
       - yarn build
   post_build:
     commands:
-      - aws s3 sync build s3://shenkproperties.john-shenk.com
+      - aws s3 sync build s3://shenkproperties.com
       - aws cloudfront create-invalidation --paths /index.html --distribution-id E2Y3BQFSWSRYXU
 artifacts:
   files:
