@@ -10,19 +10,20 @@ variable "region" {
 
 variable "project" {
   type = string
+  default = "shenkproperties"
 }
 
 variable "domain" {
   type = string
-  default = "john-shenk.com"
+  default = "shenkproperties.com"
 }
 
 variable "zone_id" {
   type = string
-  default = "Z3P68RXJ4VECYX"
+  default = "Z07576987ZXVIW0QWR8M"
 }
 
 variable "certificate_arn" {
   type = string
-  default = "arn:aws:acm:us-east-1:671958020402:certificate/fc7ab094-b641-4898-8aca-24739e555f73"
+  default = "arn:aws:acm:us-east-1:671958020402:certificate/7f0419b8-2b21-4642-bf91-c6904c16935a"
 }

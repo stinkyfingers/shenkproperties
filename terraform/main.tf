@@ -6,7 +6,7 @@ provider "aws" {
 
 # s3
 resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.project}.${var.domain}"
+  bucket = var.domain
 }
 
 resource "aws_s3_bucket_policy" "cloudfront" {
@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "cloudfront" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:s3:::${var.project}.${var.domain}/*"
+      "arn:aws:s3:::${var.domain}/*"
     ]
     condition {
       test = "StringEquals"
@@ -44,6 +44,13 @@ resource "aws_s3_bucket_acl" "bucket" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.bucket.id
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 resource "aws_s3_bucket_public_access_block" "pab" {
   bucket = aws_s3_bucket.bucket.id
   block_public_acls   = true
@@ -51,7 +58,7 @@ resource "aws_s3_bucket_public_access_block" "pab" {
 }
 
 resource "aws_cloudfront_origin_access_identity" "oai" {
-  comment = "${var.project}.${var.domain} identity"
+  comment = "${var.domain} identity"
 }
 
 locals {
@@ -69,7 +76,7 @@ resource "aws_cloudfront_distribution" "distribution" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
 
-  aliases = ["${var.project}.${var.domain}"]
+  aliases = [var.domain]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -115,7 +122,7 @@ resource "aws_cloudfront_distribution" "distribution" {
 }
 
 resource "aws_cloudfront_origin_access_control" "default" {
-  name                              = "${var.project}"
+  name                              = var.project
   description                       = "Default Policy"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -124,7 +131,19 @@ resource "aws_cloudfront_origin_access_control" "default" {
 
 resource "aws_route53_record" "record" {
   zone_id = var.zone_id
-  name    = "${var.project}.${var.domain}"
+  name    = var.domain
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.distribution.hosted_zone_id
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "www_record" {
+  zone_id = var.zone_id
+  name    = "*.${var.domain}"
   type    = "A"
 
   alias {
