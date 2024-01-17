@@ -155,11 +155,11 @@ const employmentFields = [
 
 const Test = () => {
 	const [data, setData] = React.useState({});
-	const [status, setStatus] = React.useState('');
+	const [status, setStatus] = React.useState({});
 	const ref = React.useRef(null);
 
 	const handleChange = (e, section, index) => {
-		setStatus('');
+		setStatus(null);
 		const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 		setData((prev) => {
 			if (section && index > -1) {
@@ -167,6 +167,12 @@ const Test = () => {
 				if (!newSection[section]) newSection[section] = [];
 				if (!newSection[section][index]) newSection[section][index] = {};
 				newSection[section][index][e.target.name] = value;
+				return newSection
+			}
+			if (section) {
+				const newSection = window.structuredClone(prev);
+				if (!newSection[section]) newSection[section] = {};
+				newSection[section][e.target.name] = value;
 				return newSection
 			}
 			return ({...prev, [e.target.name]: value});
@@ -178,15 +184,18 @@ const Test = () => {
 	});
 
 	const handleEmail = (e) => {
-		setStatus('Sending email...');
+		setStatus({ type: 'warning', message: 'Sending email...' });
 		sendEmail(data)
 			.then((res) => {
-				// TODO warn user if email failed
-				setStatus('Email sent!');
+				if (res.error) {
+					setStatus({ type: 'error', message: res.error })
+					return;
+				}
+				setStatus({ type: 'success', message: 'Email sent!' });
 			})
 			.catch((err) => {
 				console.warn(err);
-				setStatus('Email failed!')
+				setStatus({ type: 'error', message: 'Failed to send email' })
 			});
 	};
 	
@@ -223,21 +232,17 @@ const Test = () => {
 	};
 	
 	const renderEmploymentFields = () => {
-		const arr = [];
-		for (let i = 0; i < 2; i++) {
-			arr.push(
-				<div className={styles.employmentContainer} key={`employment-${i}`}>
-					<h6>Employment {i + 1}</h6>
-					{renderFields(employmentFields, 'employer', i)}
-				</div>
-			)
-		}
-		return arr;
+		return (
+			<div className={styles.employmentContainer} key={`employment`}>
+				<h6>Employment</h6>
+				{renderFields(employmentFields, 'employer')}
+			</div>
+		)
 	};
 
 	return (
 		<div>
-			<div className={styles.status}>{status}</div>
+			{status && (<div>{status?.message}</div>) }
 			<div ref={ref}>
 				<div className={styles.personalInfo}>
 					<h5 className={styles.header}>Personal Information</h5>
