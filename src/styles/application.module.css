@@ -1,26 +1,63 @@
-.personalInfo {
-  width: 50%;
-}
+
 .inputContainer {
   display: flex;
   justify-content: space-between;
   padding: .2em 0;
   font-size: 1.2em;
 }
-.input {
-  border-bottom: 1px solid #000;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  width: 100%;
-  font-size: 1em;
-
-}
 .value {
+  /*width: 80em;*/
+}
+.header {
+  font-size: 1.4em;
+  text-align: center;
+  background-color: var(--color-main);
+  color: var(--color-secondary);
+}
+.input {
   width: 100%;
 }
+
 .label {
-  padding: 0 .5em 0 0;
-  text-align: right;
-  width: 100%;
+  width: 15em;
+  float: left;
 }
+.personalInfo {
+  width: 50em;
+  margin: auto;
+  break-inside: avoid;
+}
+.rentalHistory {
+  width: 50em;
+  margin: auto;
+}
+.rentalContainer {
+  break-inside: avoid;
+}
+.employmentHistory {
+  width: 50em;
+  margin: auto;
+}
+.employmentContainer {
+  break-inside: avoid;
+}
+.notes {
+  width: 50em;
+  margin: auto;
+  break-inside: avoid;
+}
+.notesInput {
+  margin:auto;
+}
+.controls {
+  width: 80%;
+  margin: auto;
+}
+
+/*@media print {*/
+/*  .pageBreak {*/
+/*    margin-top: 1rem;*/
+/*    display: block;*/
+/*    page-break-before: auto;*/
+/*  }*/
+/*}*/
