@@ -1,0 +1,23 @@
+.header {
+    background-color: var(--color-accent);
+    padding: 0 0 1em 0;
+}
+.nav {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.target {
+    color: red;
+}
+/*.link {*/
+/*    text-decoration: none;*/
+/*    color: var(--color-secondary);*/
+/*    background-color: var(--color-main);*/
+/*    padding: 1em;*/
+/*    border-radius: .2em;*/
+/*}*/
+/*.link:hover {*/
+/*    color: var(--color-main);*/
+/*    background-color: var(--color-secondary);*/
+/*}*/

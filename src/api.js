@@ -15,3 +15,15 @@ export const sendEmail = async(message) => {
   const data = await res.text();
   return data;
 };
+
+export const getImages = async(key) => {
+  const url = `${endpoint}/images?property=${key}`;
+  const res = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await res.json();
+  return data;
+}
