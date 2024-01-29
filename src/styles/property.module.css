@@ -1,3 +1,12 @@
+
 .propertyHeader {
     color: var(--color-main)
+}
+.key {
+    font-style: oblique;
+}
+.propertyAttributesList {
+    margin: auto;
+    color: var(--color-main);
+    text-align: left;
 }

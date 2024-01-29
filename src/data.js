@@ -1,11 +1,12 @@
 export const properties = [
   {
-    name: "1516 Grant Ave.",
+    address: "1516 Grant Ave.",
     key: "1516Grant",
+    mainImage: "main1516",
     bedrooms: 2,
     bathrooms: 2,
-    rent: 800,
-    deposit: 800,
+    rent: '$1000',
+    deposit: '$1000',
     includedUtilities: ["Water", "Sewer", "Trash", "Lawn Care"],
     excludedUtilities: ["Electric", "Gas/Heat", "Internet", "Snow Removal"],
     pets: "No",

@@ -2,12 +2,21 @@ import React from 'react';
 import { useReactToPrint } from 'react-to-print';
 import styles from '../styles/application.module.css';
 import { sendEmail } from '../api';
+import { useParams } from 'react-router-dom';
 
 const checkInputType = (type) => {
 	const input = document.createElement("input");
 	input.setAttribute("type", type);
 	return input.type == type
 }
+
+const propertyFields = [
+	{
+		label: 'Location',
+		name: 'location',
+		type: 'text',
+	}
+];
 
 const personalFields = [
 	{
@@ -154,7 +163,8 @@ const employmentFields = [
 ];
 
 const Test = () => {
-	const [data, setData] = React.useState({});
+	const { location } = useParams();
+	const [data, setData] = React.useState({ location });
 	const [status, setStatus] = React.useState({});
 	const ref = React.useRef(null);
 
@@ -201,7 +211,11 @@ const Test = () => {
 	
 	const renderFields = (fields, section, index) => {
 		return fields.map((field) => {
-			const value = section && data[section] && data[section][index] ? data[section][index][field.name] : data[field.name];
+			const value = () => {
+				if (section && data[section] && data[section][index]) return data[section][index][field.name];
+				if (section && data[section]) return data[section][field.name];
+				return data[field.name];
+			}
 			return (
 				<div className={styles.inputContainer} key={`${field.name}-${section}-}${index}`}>
 					<label className={styles.label} htmlFor={field.name}>{field.label}</label>
@@ -211,7 +225,7 @@ const Test = () => {
 						name={field.name}
 						id={field.name}
 						onChange={(e) => handleChange(e, section, index)}
-						value={value || ''}
+						value={value() || ''}
 					/>
 				</div>
 			)
@@ -245,6 +259,15 @@ const Test = () => {
 			{status && (<div>{status?.message}</div>) }
 			<div ref={ref}>
 				<div className={styles.personalInfo}>
+					<h5 className={styles.header}>Property</h5>
+					{propertyFields.map((field) => (
+						<div className={styles.inputContainer} key={field.name}>
+							<label className={styles.label} htmlFor={field.name}>{field.label}</label>
+							<input className={styles.input} type={field.type} name={field.name} id={field.name} onChange={handleChange} value={data[field.name] || ''}/>
+						</div>
+					))}
+				</div>
+				<div className={styles.personalInfo}>
 					<h5 className={styles.header}>Personal Information</h5>
 						{personalFields.map((field) => (
 							<div className={styles.inputContainer} key={field.name}>
@@ -276,8 +299,8 @@ const Test = () => {
 				</div>
 			</div>
 			<div className={styles.controls}>
-				<button onClick={handlePrint}>Print</button>
-				<button onClick={handleEmail}>Email</button>
+				<button className={styles.button} onClick={handlePrint}>Print</button>
+				<button className={styles.button} onClick={handleEmail}>Email</button>
 			</div>
 		</div>
 	);

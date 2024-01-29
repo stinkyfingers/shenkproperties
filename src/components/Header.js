@@ -14,10 +14,10 @@ const Header = () => {
       <nav>
         <ul className={styles.nav}>
           <li className={styles.target}>
-            <button href="/properties" onClick={handleClick}>Properties</button>
+            <button className={styles.button} href="/properties" onClick={handleClick}>Properties</button>
           </li>
           <li className={styles.target} >
-            <button href="/application" onClick={handleClick}>Application</button>
+            <button className={styles.button}  href="/application" onClick={handleClick}>Application</button>
           </li>
         </ul>
       </nav>

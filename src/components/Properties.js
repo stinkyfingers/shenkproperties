@@ -16,7 +16,7 @@ const Properties = () => {
         {properties.map((property, index) => {
           return (
             <li key={index}>
-              <button href={`/property/${property.key}`} onClick={handleClick}>{property.name}</button>
+              <button href={`/property/${property.key}`} onClick={handleClick}>{property.address}</button>
             </li>
           );
         })}

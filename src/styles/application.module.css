@@ -53,6 +53,9 @@
   width: 80%;
   margin: auto;
 }
+.button {
+  margin: .4em;
+}
 
 /*@media print {*/
 /*  .pageBreak {*/

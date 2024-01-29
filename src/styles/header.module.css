@@ -1,23 +1,14 @@
 .header {
-    background-color: var(--color-accent);
+    /*background-color: var(--color-accent);*/
     padding: 0 0 1em 0;
+    color: var(--color-main);
 }
 .nav {
     list-style: none;
     display: flex;
     justify-content: space-around;
 }
-.target {
-    color: red;
+.button {
+    background-color: var(--color-accent);
+    color: var(--color-main);
 }
-/*.link {*/
-/*    text-decoration: none;*/
-/*    color: var(--color-secondary);*/
-/*    background-color: var(--color-main);*/
-/*    padding: 1em;*/
-/*    border-radius: .2em;*/
-/*}*/
-/*.link:hover {*/
-/*    color: var(--color-main);*/
-/*    background-color: var(--color-secondary);*/
-/*}*/
