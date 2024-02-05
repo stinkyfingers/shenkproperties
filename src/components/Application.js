@@ -212,8 +212,20 @@ const Test = () => {
 	const renderFields = (fields, section, index) => {
 		return fields.map((field) => {
 			const value = () => {
-				if (section && data[section] && data[section][index]) return data[section][index][field.name];
-				if (section && data[section]) return data[section][field.name];
+				if (section && index > -1) {
+					if (!data[section]) {
+						data[section] = [{}]
+					}
+					if (!data[section][index]) {
+						data[section][index] = {}
+					}
+					if (data[section] && data[section][index]) return data[section][index][field.name];
+					return '';
+				}
+				if (section) {
+					if (data[section]) return data[section][field.name];
+					return '';
+				}
 				return data[field.name];
 			}
 			return (
