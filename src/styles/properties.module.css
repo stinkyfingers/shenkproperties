@@ -4,3 +4,21 @@
     justify-content: space-around;
     padding: 0;
 }
+.propertyTile {
+    box-shadow: 0 0 6px 0 var(--color-main);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+.propertyTile:hover {
+    box-shadow: 0 0 10px 0 var(--color-main);
+    cursor: pointer;
+}
+.propertyTileImage {
+    height: 200px;
+    object-fit: cover;
+}
+.propertyAddress {
+    color: var(--color-main);
+}

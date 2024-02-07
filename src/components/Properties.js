@@ -1,22 +1,49 @@
 import React from 'react';
 import { properties } from '../data';
 import styles from '../styles/properties.module.css';
+import { getImages } from '../api';
 
 const Properties = () => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    const href = e.target.getAttribute('href');
-    window.history.pushState(null, null, href);
+  const [propertyImages, setPropertyImages] = React.useState([]);
+  React.useEffect(() => {
+    getImages('').then((imagePaths) => {
+      setPropertyImages(() => {
+        const dict = {};
+        imagePaths?.keys?.forEach((path) => {
+          properties.forEach((property) => {
+            if (path.includes(property.mainImage)) {
+              dict[property.key] = path;
+            }
+          });
+        })
+        return dict;
+      });
+    });
+  }, [properties]);
+  const handleClick = (key) => {
+    window.history.pushState(null, null, `/property/${key}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
-  }
+  };
+  const calculateAvailable = (property) => {
+    if (!property.available) return '-';
+    const date = new Date(property.available);
+    if (date && date > Date.now()) return date.toLocaleDateString()
+    return 'Yes';
+  };
 	return (
 		<div>
       <h2>Properties</h2>
       <ul className={styles.list}>
         {properties.map((property, index) => {
           return (
-            <li key={index}>
-              <button href={`/property/${property.key}`} onClick={handleClick}>{property.address}</button>
+            <li
+              key={index}
+              className={styles.propertyTile}
+              onClick={() => handleClick(property.key)}
+            >
+              <img src={propertyImages[property.key]} alt={property.address} className={styles.propertyTileImage} />
+              <h3 className={styles.propertyAddress}>{property.address}</h3>
+              <h6>Available: {calculateAvailable(property)}</h6>
             </li>
           );
         })}

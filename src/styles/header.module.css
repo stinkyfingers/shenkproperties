@@ -1,7 +1,10 @@
 .header {
-    /*background-color: var(--color-accent);*/
     padding: 0 0 1em 0;
     color: var(--color-main);
+}
+.logo {
+    color: var(--color-secondary);
+    background-color: var(--color-main);
 }
 .nav {
     list-style: none;
@@ -9,6 +12,9 @@
     justify-content: space-around;
 }
 .button {
-    background-color: var(--color-accent);
+    background-color: var(--color-secondary);
     color: var(--color-main);
+}
+.selected {
+    text-decoration: underline;
 }

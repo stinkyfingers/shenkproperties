@@ -14,5 +14,6 @@ export const properties = [
     garage: "2 Car",
     laundry: "Yes",
     lease: "month-to-month",
+    available: '04/01/2024'
   }
 ];
