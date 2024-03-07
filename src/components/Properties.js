@@ -1,10 +1,13 @@
 import React from 'react';
-import { properties } from '../data';
 import styles from '../styles/properties.module.css';
-import { getImages } from '../api';
+import { getImages, getData } from '../api';
 
 const Properties = () => {
+  const [properties, setProperties] = React.useState([]);
   const [propertyImages, setPropertyImages] = React.useState([]);
+  React.useEffect(() => {
+    getData().then(setProperties).catch(console.error);
+  },[getData]);
   React.useEffect(() => {
     getImages('').then((imagePaths) => {
       setPropertyImages(() => {

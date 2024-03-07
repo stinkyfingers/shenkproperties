@@ -19,6 +19,7 @@ const displayFields = {
 	'garage': 'Garage',
 	'laundry': 'Laundry',
 	'lease': 'Lease',
+	'notes': 'Notes',
 };
 
 const Property = () => {
