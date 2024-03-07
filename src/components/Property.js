@@ -1,10 +1,10 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import { properties } from '../data';
 import { useParams } from 'react-router-dom';
 import * as api from '../api';
 
 import styles from '../styles/property.module.css';
+import { getData } from '../api';
 
 const displayFields = {
 	'address': 'Address',
@@ -23,11 +23,15 @@ const displayFields = {
 };
 
 const Property = () => {
+	const [properties, setProperties] = React.useState([]);
+	React.useEffect(() => {
+		getData().then(setProperties).catch(console.error);
+	},[getData]);
 	const [property, setProperty] = React.useState(null);
 	const { key } = useParams();
 	React.useEffect(() => {
 		setProperty(properties.find((property) => property.key === key));
-	}, [key]);
+	}, [key, properties]);
 	const [images, setImages] = React.useState([]);
 	React.useEffect(() => {
 		if (!property) return;
