@@ -1,3 +1,6 @@
+.header {
+    color: var(--color-main);
+}
 .list {
     list-style: none;
     display: flex;
@@ -5,6 +8,7 @@
     padding: 0;
 }
 .propertyTile {
+    background-color: white;
     box-shadow: 0 0 6px 0 var(--color-main);
     border-radius: 5px;
     display: flex;
@@ -14,6 +18,7 @@
 .propertyTile:hover {
     box-shadow: 0 0 10px 0 var(--color-main);
     cursor: pointer;
+    opacity: .8;
 }
 .propertyTileImage {
     height: 200px;

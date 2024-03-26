@@ -2,6 +2,15 @@ import React from 'react';
 import styles from '../styles/properties.module.css';
 import { getImages, getData } from '../api';
 
+const background = {
+  backgroundImage: "url(/Rockford.jpg)",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center",
+  height: "100vh",
+}
+
+
 const Properties = () => {
   const [properties, setProperties] = React.useState([]);
   const [propertyImages, setPropertyImages] = React.useState([]);
@@ -34,8 +43,8 @@ const Properties = () => {
     return 'Yes';
   };
 	return (
-		<div>
-      <h2>Properties</h2>
+		<div style={background}>
+      <h2 className={styles.header}>Properties</h2>
       <ul className={styles.list}>
         {properties.map((property, index) => {
           return (

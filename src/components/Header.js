@@ -13,6 +13,7 @@ const Header = () => {
 	return (
 		<div className={styles.header}>
       <h1 className={styles.logo}>Shenk Properties</h1>
+      <h5>Rental homes in Rockford, Illinois</h5>
       <nav>
         <ul className={styles.nav}>
           <li className={styles.target}>
