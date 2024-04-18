@@ -1,7 +1,7 @@
 const liveEndpoint = 'https://server.john-shenk.com/shenkpropertiesapi';
 const devEndpoint = 'http://localhost:8087';
 
-const endpoint = process.env.NODE_ENV === 'production' ? liveEndpoint : devEndpoint;
+export const endpoint = process.env.NODE_ENV === 'production' ? liveEndpoint : devEndpoint;
 
 export const sendEmail = async(message) => {
   const url = `${endpoint}/sendEmail`;
@@ -26,7 +26,7 @@ export const getImages = async(key) => {
   });
   const data = await res.json();
   return data;
-}
+};
 
 export const getData = async() => {
   const url = `${endpoint}/data`;
@@ -37,5 +37,14 @@ export const getData = async() => {
     },
   });
   const data = await res.json();
+  return data;
+};
+
+export const getFile = async(key) => {
+  const url = `${endpoint}/file?key=${key}`;
+  const res = await fetch(url, {
+    method: 'GET',
+  });
+  const data = await res.blob();
   return data;
 }

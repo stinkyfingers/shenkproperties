@@ -3,6 +3,7 @@ import Application from './components/Application';
 import Header from './components/Header';
 import Property from './components/Property';
 import Properties from './components/Properties';
+import Lease from './components/Lease';
 import './App.css';
 
 const Layout = () => {
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: 'application/:location',
           element: <Application />
+        },
+        {
+          path: 'lease/:location',
+          element: <Lease />
         },
         {
           path: 'application',

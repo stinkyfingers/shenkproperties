@@ -69,6 +69,10 @@ const Property = () => {
 							/>
 						</div>
 						<div>
+							<h6>Lease:</h6>
+							<a href={`/lease/${property.address}`}>Lease</a>
+						</div>
+						<div>
 							<h6>Apply to rent:</h6>
 							<a href={`/application/${property.address}`}>Apply</a>
 						</div>
