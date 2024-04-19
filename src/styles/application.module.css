@@ -23,26 +23,26 @@
   float: left;
 }
 .personalInfo {
-  width: 50em;
+  max-width: 50em;
   margin: auto;
   break-inside: avoid;
 }
 .rentalHistory {
-  width: 50em;
+  max-width: 50em;
   margin: auto;
 }
 .rentalContainer {
   break-inside: avoid;
 }
 .employmentHistory {
-  width: 50em;
+  max-width: 50em;
   margin: auto;
 }
 .employmentContainer {
   break-inside: avoid;
 }
 .notes {
-  width: 50em;
+  max-width: 50em;
   margin: auto;
   break-inside: avoid;
 }
