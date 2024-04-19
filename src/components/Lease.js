@@ -11,7 +11,7 @@ const Lease = () => {
 	return (
 		<div>
       <embed
-        src={`${endpoint}/file?key=RentalAgreement${normalizedLocation}.pdf`}
+        src={`https://shenkpropertiesapi.s3.us-west-1.amazonaws.com/RentalAgreement${normalizedLocation}.pdf`}
         alt="Rental Agreement"
         width="100%"
         height="1600px"
