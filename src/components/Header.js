@@ -14,6 +14,7 @@ const Header = () => {
 		<div className={styles.header}>
       <h1 className={styles.logo}>Shenk Properties</h1>
       <h5>Rental homes in Rockford, Illinois</h5>
+      <h6>Contact: <a href="mailto:shenkrentals@gmail.com?subject=website_referral">shenkrentals@gmail.com</a></h6>
       <nav>
         <ul className={styles.nav}>
           <li className={styles.target}>
