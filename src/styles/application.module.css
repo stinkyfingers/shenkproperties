@@ -56,11 +56,14 @@
 .button {
   margin: .4em;
 }
+input[type="checkbox"] {
+  height: 30px;
+}
 
-/*@media print {*/
-/*  .pageBreak {*/
-/*    margin-top: 1rem;*/
-/*    display: block;*/
-/*    page-break-before: auto;*/
-/*  }*/
-/*}*/
+@media print {
+  .pageBreak {
+    margin-top: 1rem;
+    display: block;
+    page-break-before: auto;
+  }
+}

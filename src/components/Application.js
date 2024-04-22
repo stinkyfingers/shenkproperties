@@ -68,6 +68,16 @@ const personalFields = [
 		label: 'Gross Monthly Income',
 		name: 'grossMonthlyIncome',
 		type: 'number',
+	},
+	{
+		label: 'Have you ever been evicted?',
+		name: 'evicted',
+		type: 'checkbox',
+	},
+	{
+		label: 'Have you ever been convicted of a felony?',
+		name: 'felony',
+		type: 'checkbox',
 	}
 ];
 
@@ -244,6 +254,14 @@ const Test = () => {
 		});
 	};
 
+	const renderPersonalFields = () => {
+		return (
+			<div className={styles.employmentContainer} key={`personal`}>
+				{renderFields(personalFields, 'personal')}
+			</div>
+		)
+	};
+
 	const renderLandlordFields = () => {
 		const arr = [];
 		for (let i = 0; i < 3; i++) {
@@ -281,12 +299,7 @@ const Test = () => {
 				</div>
 				<div className={styles.personalInfo}>
 					<h5 className={styles.header}>Personal Information</h5>
-						{personalFields.map((field) => (
-							<div className={styles.inputContainer} key={field.name}>
-								<label className={styles.label} htmlFor={field.name}>{field.label}</label>
-								<input className={styles.input} type={field.type} name={field.name} id={field.name} onChange={handleChange} value={data[field.name] || ''}/>
-							</div>
-						))}
+					{renderPersonalFields()}
 				</div>
 				<div className={styles.rentalHistory}>
 					<h5 className={styles.header}>Rental History</h5>
