@@ -207,8 +207,10 @@ const Test = () => {
 		setStatus({ type: 'warning', message: 'Sending email...' });
 		sendEmail(data)
 			.then((res) => {
-				if (res.error) {
-					setStatus({ type: 'error', message: res.error })
+				const data = JSON.parse(res);
+				if (data.error) {
+					setStatus({ type: 'error', message: 'Email not successful. Please email directly to: shenkrentals@gmail.com' });
+					console.warn(data.error);
 					return;
 				}
 				setStatus({ type: 'success', message: 'Email sent!' });
@@ -257,7 +259,7 @@ const Test = () => {
 	const renderPersonalFields = () => {
 		return (
 			<div className={styles.employmentContainer} key={`personal`}>
-				{renderFields(personalFields, 'personal')}
+				{renderFields(personalFields)}
 			</div>
 		)
 	};
@@ -286,7 +288,6 @@ const Test = () => {
 
 	return (
 		<div>
-			{status && (<div>{status?.message}</div>) }
 			<div ref={ref}>
 				<div className={styles.personalInfo}>
 					<h5 className={styles.header}>Property</h5>
@@ -323,6 +324,7 @@ const Test = () => {
 					/>
 				</div>
 			</div>
+			{status && (<div>{status?.message}</div>) }
 			<div className={styles.controls}>
 				<button className={styles.button} onClick={handlePrint}>Print</button>
 				<button className={styles.button} onClick={handleEmail}>Email</button>
