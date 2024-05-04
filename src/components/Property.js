@@ -14,6 +14,7 @@ const displayFields = {
 	'deposit': 'Deposit',
 	'includedUtilities': 'Included Utilities',
 	'excludedUtilities': 'Excluded Utilities',
+	'includedAppliances': 'Included Appliances',
 	'pets': 'Pets',
 	'parking': 'Parking',
 	'garage': 'Garage',
@@ -44,14 +45,14 @@ const Property = () => {
 					if (b.includes(mainImage)) return 1;
 				})
 				.map((image) => ({
-				original: image,
-				originalHeight: 500,
-				originalWidth: 800,
-				thumbnail: image,
-				thumbnailHeight: 100,
-				thumbnailWidth: 100,
-				originalTitle: image,
-			})))
+					original: image,
+					originalHeight: 500,
+					originalWidth: 800,
+					thumbnail: image,
+					thumbnailHeight: 100,
+					thumbnailWidth: 100,
+					originalTitle: image,
+				})))
 		});
 	}, [key, property]);
 	if (!property) {
@@ -80,7 +81,6 @@ const Property = () => {
 							<table className={styles.propertyAttributesList}>
 								<tbody>
 								{Object.keys(displayFields).map((key) => {
-	
 									const value = typeof(property[key]) === 'object' ? property[key].join(', ') : property[key]
 									return (
 										<tr key={key}>
