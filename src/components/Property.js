@@ -75,7 +75,7 @@ const Property = () => {
 						</div>
 						<div>
 							<h6>Apply to rent:</h6>
-							<a href={`/application/${property.address}`}>Apply</a>
+							<a href={property.zillow} target="_blank">View/apply on Zillow</a>
 						</div>
 						<div>
 							<table className={styles.propertyAttributesList}>
